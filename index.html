@@ -28,12 +28,40 @@
     </header>
 
     <main>
+        <section class="hero-section slider-container" id="inicio">
+            <div class="slider">
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <img src="img/machupichu.jpg" alt="Vista panorámica de Machu Picchu al amanecer" class="hero-background">
+                    <div class="hero-content">
+                        <h1>Descubre la Magia de Perú</h1>
+                        <p>Tu aventura soñada comienza aquí.</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="img/lineasnazca.jpg" alt="Líneas de Nazca desde el aire" class="hero-background">
+                    <div class="hero-content">
+                        <h1>Sobrevuela los Misterios de Nazca</h1>
+                        <p>Contempla los geoglifos que asombran al mundo.</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <img src="img/ceviche.jpg" alt="Río en la selva amazónica del Perú" class="hero-background">
+                    <div class="hero-content">
+                        <h1>Explora la Aventura Amazónica</h1>
+                        <p>Conecta con la naturaleza en su estado más puro.</p>
+                    </div>
+                </div>
+            </div>
 
-        <section class="hero-section" id="inicio">
-            <img src="img/machupichu.jpg" alt="Vista panorámica de Machu Picchu al amanecer" class="hero-background">
-            <div class="hero-content">
-                <h1>Descubre la Magia de Perú</h1>
-                <p>Tu aventura soñada comienza aquí.</p>
+            <!-- Controles del Slider -->
+            <button class="slider-arrow prev" aria-label="Anterior">&#10094;</button>
+            <button class="slider-arrow next" aria-label="Siguiente">&#10095;</button>
+            
+            <div class="slider-dots">
+                <!-- Los puntos se generarán con JavaScript -->
             </div>
         </section>
         
@@ -113,6 +141,7 @@
         </div>
     </footer>
 
-</body>
+    <script src="script.js"></script>
 
+</body>
 </html>
