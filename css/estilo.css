@@ -1,4 +1,3 @@
-/* Estilos para el index principal */
 html {
     scroll-behavior: smooth;
 }
@@ -86,26 +85,14 @@ section[id] {
     border-bottom: 2px solid #2E7D32;
 }
 
-/* Hero Section (Reemplazo del Slider) */
+/* Hero Section (Adaptado para Slider) */
 .hero-section {
-    position: relative;
+    position: relative; /* Cambiado para contener elementos posicionados */
     height: 450px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     color: #fff;
+    overflow: hidden; /* Oculta los slides que no están activos */
 }
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 2;
-}
+/* Ya no se necesita el pseudo-elemento ::before para el overlay */
 .hero-background {
     position: absolute;
     top: 0;
@@ -117,7 +104,15 @@ section[id] {
 }
 .hero-content {
     position: relative;
-    z-index: 3;
+    z-index: 3; /* Asegura que el contenido esté sobre el overlay del slide */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Overlay se aplica aquí */
 }
 .hero-content h1 {
     font-size: 3rem;
@@ -378,8 +373,6 @@ audio {
     background-color: #1b5e20;
 }
 
-/* --- MEDIA QUERIES PARA RESPONSIVIDAD --- */
-
 /* Tablets y Dispositivos Medianos */
 @media (max-width: 992px) {
     .info-grid {
@@ -464,4 +457,100 @@ audio {
     h2 {
         font-size: 1.5rem;
     }
+}
+
+/*
+================================================
+--- INICIO: ESTILOS PARA EL CARRUSEL (SLIDER) ---
+================================================
+*/
+
+/* Contenedor de cada slide individual */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.8s ease-in-out; /* Animación de fundido suave */
+    z-index: 1; /* Nivel base para los slides */
+}
+
+/* El slide activo se vuelve visible */
+.slide.active {
+    opacity: 1;
+    z-index: 2; /* Se pone por encima de los otros slides */
+}
+
+/* La imagen de fondo dentro de cada slide hereda estilos de .hero-background */
+.slide .hero-background {
+    z-index: -1; /* Se asegura que esté detrás del contenido y el overlay */
+}
+
+/* El contenido del slide (texto) hereda estilos de .hero-content */
+.slide .hero-content {
+    /* El overlay (background-color) ya está definido en .hero-content */
+    z-index: 3; /* Asegura que el texto esté por encima de todo en el slide */
+}
+
+/* Flechas de navegación del carrusel */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5; /* Por encima de los slides y el contenido */
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.slider-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Posición específica para cada flecha */
+.slider-arrow.prev {
+    left: 20px;
+}
+
+.slider-arrow.next {
+    right: 20px;
+}
+
+/* Contenedor para los puntos de navegación */
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5; /* Por encima de los slides */
+    display: flex;
+    gap: 10px; /* Espacio entre los puntos */
+}
+
+/* Estilo de cada punto de navegación */
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 0; /* Elimina padding por defecto del botón */
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Estilo del punto que corresponde al slide activo */
+.dot.active {
+    background-color: white;
 }
